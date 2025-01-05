@@ -1,0 +1,154 @@
+====================================
+Robot (
+[
+    <Capabilities.CORAL_1: 1>,
+    <Capabilities.CORAL_2: 2>,
+    <Capabilities.CORAL_3: 3>,
+    <Capabilities.CORAL_4: 4>,
+    <Capabilities.ALGAE_PROC: 11>,
+    <Capabilities.ALGAE_NET: 10>,
+    <Capabilities.CLIMB_LOW: 12>,
+    <Capabilities.ALGAE_PROC: 11>,
+    <Capabilities.CORAL_FLOOR: 6>,
+    <Capabilities.CORAL_HP: 5>,
+    <Capabilities.ALGAE_3: 8>,
+    <Capabilities.ALGAE_2: 7>
+]
+) scored  96  points
+====================================
+====================================
+Robot (
+[<Capabilities.CLIMB_LOW: 12>, <Capabilities.ALGAE_PROC: 11>]
+) scored  12  points
+====================================
+====================================
+Robot (
+[
+    <Capabilities.ALGAE_NET: 10>,
+    <Capabilities.ALGAE_PROC: 11>,
+    <Capabilities.ALGAE_FLOOR: 9>,
+    <Capabilities.ALGAE_2: 7>,
+    <Capabilities.ALGAE_3: 8>
+]
+) scored  12  points
+====================================
+====================================
+Robot (
+[<Capabilities.CORAL_1: 1>, <Capabilities.ALGAE_PROC: 11>, <Capabilities.CORAL_HP: 5>]
+) scored  48  points
+====================================
+====================================
+Robot (
+[
+    <Capabilities.CORAL_1: 1>,
+    <Capabilities.CORAL_2: 2>,
+    <Capabilities.CORAL_3: 3>,
+    <Capabilities.CORAL_4: 4>,
+    <Capabilities.ALGAE_2: 7>,
+    <Capabilities.ALGAE_3: 8>,
+    <Capabilities.CORAL_HP: 5>
+]
+) scored  75  points
+====================================
+====================================
+Robot (
+[
+    <Capabilities.CORAL_2: 2>,
+    <Capabilities.CORAL_3: 3>,
+    <Capabilities.CORAL_HP: 5>,
+    <Capabilities.ALGAE_3: 8>,
+    <Capabilities.ALGAE_2: 7>,
+    <Capabilities.ALGAE_PROC: 11>
+]
+) scored  63  points
+====================================
+====================================
+Robot (
+[
+    <Capabilities.ALGAE_FLOOR: 9>,
+    <Capabilities.ALGAE_2: 7>,
+    <Capabilities.ALGAE_3: 8>,
+    <Capabilities.ALGAE_PROC: 11>,
+    <Capabilities.ALGAE_NET: 10>
+]
+) scored  12  points
+====================================
+====================================
+Robot (
+[
+    <Capabilities.CORAL_3: 3>,
+    <Capabilities.CORAL_2: 2>,
+    <Capabilities.CORAL_4: 4>,
+    <Capabilities.CORAL_1: 1>,
+    <Capabilities.ALGAE_3: 8>,
+    <Capabilities.ALGAE_2: 7>,
+    <Capabilities.ALGAE_PROC: 11>,
+    <Capabilities.CORAL_HP: 5>
+]
+) scored  18  points
+====================================
+====================================
+Robot (
+[
+    <Capabilities.CORAL_3: 3>,
+    <Capabilities.CORAL_2: 2>,
+    <Capabilities.CORAL_4: 4>,
+    <Capabilities.CORAL_1: 1>,
+    <Capabilities.ALGAE_3: 8>,
+    <Capabilities.ALGAE_2: 7>,
+    <Capabilities.ALGAE_NET: 10>
+]
+) scored  0  points
+====================================
+====================================
+Robot (
+[
+    <Capabilities.CORAL_2: 2>,
+    <Capabilities.CORAL_1: 1>,
+    <Capabilities.ALGAE_3: 8>,
+    <Capabilities.ALGAE_2: 7>,
+    <Capabilities.ALGAE_PROC: 11>,
+    <Capabilities.ALGAE_NET: 10>
+]
+) scored  12  points
+====================================
+====================================
+Robot (
+[
+    <Capabilities.CORAL_2: 2>,
+    <Capabilities.CORAL_4: 4>,
+    <Capabilities.CORAL_3: 3>,
+    <Capabilities.CORAL_1: 1>,
+    <Capabilities.CORAL_HP: 5>,
+    <Capabilities.ALGAE_PROC: 11>
+]
+) scored  12  points
+====================================
+====================================
+Robot (
+[
+    <Capabilities.CORAL_2: 2>,
+    <Capabilities.CORAL_4: 4>,
+    <Capabilities.CORAL_3: 3>,
+    <Capabilities.CORAL_1: 1>,
+    <Capabilities.CORAL_FLOOR: 6>,
+    <Capabilities.ALGAE_PROC: 11>
+]
+) scored  12  points
+====================================
+====================================
+Robot (
+[<Capabilities.CORAL_2: 2>, <Capabilities.CORAL_3: 3>, <Capabilities.CORAL_HP: 5>]
+) scored  0  points
+====================================
+====================================
+Robot (
+[
+    <Capabilities.CORAL_2: 2>,
+    <Capabilities.CORAL_1: 1>,
+    <Capabilities.ALGAE_2: 7>,
+    <Capabilities.ALGAE_PROC: 11>,
+    <Capabilities.CORAL_FLOOR: 6>
+]
+) scored  12  points
+====================================

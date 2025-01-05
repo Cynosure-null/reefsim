@@ -2,6 +2,7 @@ from enum import Enum
 from typing import Match
 from rich import print
 from rich import inspect
+import csv
 
 
 class Capabilities(Enum):
@@ -24,19 +25,19 @@ class Capabilities(Enum):
 
 # Place estimates here
 timemap = {
-    Capabilities.CORAL_1: 1,
-    Capabilities.CORAL_2: 2,
+    Capabilities.CORAL_1: 2,
+    Capabilities.CORAL_2: 3,
     Capabilities.CORAL_3: 3,
     Capabilities.CORAL_4: 4,
-    Capabilities.CORAL_HP: 5,
-    Capabilities.CORAL_FLOOR: 6,
-    Capabilities.ALGAE_2: 7,
-    Capabilities.ALGAE_3: 8,
-    Capabilities.ALGAE_FLOOR: 9,
-    Capabilities.ALGAE_NET: 10,
-    Capabilities.ALGAE_PROC: 11,
-    Capabilities.CLIMB_LOW: 12,
-    Capabilities.CLIMB_HIGH: 11,
+    Capabilities.CORAL_HP: 2,
+    Capabilities.CORAL_FLOOR: 2,
+    Capabilities.ALGAE_2: 1,
+    Capabilities.ALGAE_3: 1,
+    Capabilities.ALGAE_FLOOR: 1,
+    Capabilities.ALGAE_NET: 2,
+    Capabilities.ALGAE_PROC: 2,
+    Capabilities.CLIMB_LOW: 10,
+    Capabilities.CLIMB_HIGH: 8,
 }
 
 r1_abilties = [Capabilities.CORAL_FLOOR, Capabilities.CORAL_1]
@@ -237,8 +238,8 @@ class Robot:
             return "passed"
 
 
-def str_to_pts(str):
-    match str[1]:
+def str_to_pts(str) -> float:
+    match str:
         case "Coral 4":
             return 5
         case "Coral 3":
@@ -259,22 +260,150 @@ def str_to_pts(str):
             return 0
 
 
-if __name__ == "__main__":
-    r1 = Robot(r1_abilties)
-    r2 = Robot(r2_abilties)
-    r3 = Robot(r3_abilties)
+idiot_vec = [
+    [
+        Capabilities.CORAL_1,
+        Capabilities.CORAL_2,
+        Capabilities.CORAL_3,
+        Capabilities.CORAL_4,
+        Capabilities.ALGAE_PROC,
+        Capabilities.ALGAE_NET,
+        Capabilities.CLIMB_LOW,
+        Capabilities.CLIMB_HIGH,
+        Capabilities.CORAL_FLOOR,
+        Capabilities.CORAL_HP,
+        Capabilities.ALGAE_3,
+        Capabilities.ALGAE_2,
+    ],
+    [Capabilities.CLIMB_LOW, Capabilities.CLIMB_HIGH],
+    [
+        Capabilities.ALGAE_NET,
+        Capabilities.ALGAE_PROC,
+        Capabilities.ALGAE_FLOOR,
+        Capabilities.ALGAE_2,
+        Capabilities.ALGAE_3,
+    ],
+    [Capabilities.CORAL_1, Capabilities.CLIMB_HIGH, Capabilities.CORAL_HP],
+    [
+        Capabilities.CORAL_1,
+        Capabilities.CORAL_2,
+        Capabilities.CORAL_3,
+        Capabilities.CORAL_4,
+        Capabilities.ALGAE_2,
+        Capabilities.ALGAE_3,
+        Capabilities.CORAL_HP,
+    ],
+    [
+        Capabilities.CORAL_2,
+        Capabilities.CORAL_3,
+        Capabilities.CORAL_HP,
+        Capabilities.ALGAE_3,
+        Capabilities.ALGAE_2,
+        Capabilities.ALGAE_PROC,
+    ],
+    [
+        Capabilities.ALGAE_FLOOR,
+        Capabilities.ALGAE_2,
+        Capabilities.ALGAE_3,
+        Capabilities.ALGAE_PROC,
+        Capabilities.ALGAE_NET,
+    ],
+    [
+        Capabilities.CORAL_3,
+        Capabilities.CORAL_2,
+        Capabilities.CORAL_4,
+        Capabilities.CORAL_1,
+        Capabilities.ALGAE_3,
+        Capabilities.ALGAE_2,
+        Capabilities.ALGAE_PROC,
+        Capabilities.CORAL_HP,
+    ],
+    [
+        Capabilities.CORAL_3,
+        Capabilities.CORAL_2,
+        Capabilities.CORAL_4,
+        Capabilities.CORAL_1,
+        Capabilities.ALGAE_3,
+        Capabilities.ALGAE_2,
+        Capabilities.ALGAE_NET,
+    ],
+    [
+        Capabilities.CORAL_2,
+        Capabilities.CORAL_1,
+        Capabilities.ALGAE_3,
+        Capabilities.ALGAE_2,
+        Capabilities.ALGAE_PROC,
+        Capabilities.ALGAE_NET,
+    ],
+    [
+        Capabilities.CORAL_2,
+        Capabilities.CORAL_4,
+        Capabilities.CORAL_3,
+        Capabilities.CORAL_1,
+        Capabilities.CORAL_HP,
+        Capabilities.CLIMB_HIGH,
+    ],
+    [
+        Capabilities.CORAL_2,
+        Capabilities.CORAL_4,
+        Capabilities.CORAL_3,
+        Capabilities.CORAL_1,
+        Capabilities.CORAL_FLOOR,
+        Capabilities.CLIMB_HIGH,
+    ],
+    [
+        Capabilities.CORAL_2,
+        Capabilities.CORAL_3,
+        Capabilities.CORAL_HP,
+    ],
+    [
+        Capabilities.CORAL_2,
+        Capabilities.CORAL_1,
+        Capabilities.ALGAE_2,
+        Capabilities.ALGAE_PROC,
+        Capabilities.CORAL_FLOOR,
+    ],
+]
 
-    time_left = 135
-    r1_buf = [(136, "Connecting to FMS...")]
-    r2_buf = [(136, "Connecting to FMS...")]
-    r3_buf = [(136, "Connecting to FMS...")]
-    while time_left > 0:
-        time_left -= 1
-        r1_buf.append((time_left, r1.teleop(time_left)))
-        r2_buf.append((time_left, r2.teleop(time_left)))
-        r3_buf.append((time_left, r3.teleop(time_left)))
-        print("Time remaining: ", time_left)
 
-    print("Robot 1 scored ", sum(list(map(str_to_pts, r1_buf))), " points")
-    print("Robot 2 scored ", sum(list(map(str_to_pts, r2_buf))), " points")
-    print("Robot 3 scored ", sum(list(map(str_to_pts, r3_buf))), " points")
+retbuf = [[(137, "building the robot...", 0)]]
+
+
+def sim():
+    for i in idiot_vec:
+        r1_abilties = i
+        r2_abilties = []
+        r3_abilties = []
+        r1 = Robot(r1_abilties)
+        r2 = Robot(r2_abilties)
+        r3 = Robot(r3_abilties)
+
+        time_left = 135
+        r1_buf = [(136, "Connecting to FMS...", 0)]
+        r2_buf = [(136, "Connecting to FMS...", 0)]
+        r3_buf = [(136, "Connecting to FMS...", 0)]
+        while time_left > 0:
+            time_left -= 1
+            r1out = r1.teleop(time_left)
+            r1_buf.append((time_left, r1out, str_to_pts(r1out)))
+        print("====================================")
+        print(
+            "Robot (",
+            r1_abilties,
+            ") scored ",
+            sum(list(map(str_to_pts, r1_buf[1]))),
+            " points",
+        )
+        print("====================================")
+        retbuf.append(r1_buf)
+
+
+sim()
+inspect(retbuf)
+with open("out.csv", "w", newline="") as csvfile:
+    outwriter = csv.writer(
+        csvfile, delimiter=" ", quotechar="|", quoting=csv.QUOTE_MINIMAL
+    )
+    num = 0
+    for i in retbuf:
+        outwriter.writerow(i)
