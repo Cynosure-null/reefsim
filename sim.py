@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Match
 from rich import print
 from rich import inspect
 
@@ -39,8 +40,9 @@ timemap = {
 }
 
 r1_abilties = [Capabilities.CORAL_FLOOR, Capabilities.CORAL_1]
-r2_abilties = []
+r2_abilties = [Capabilities.ALGAE_PROC, Capabilities.ALGAE_2, Capabilities.ALGAE_3]
 r3_abilties = []
+HP_ACCURACY = 0.5  # must be <1
 
 
 class Level:
@@ -235,20 +237,44 @@ class Robot:
             return "passed"
 
 
-r1 = Robot(r1_abilties)
-r2 = Robot(r2_abilties)
-r3 = Robot(r3_abilties)
+def str_to_pts(str):
+    match str[1]:
+        case "Coral 4":
+            return 5
+        case "Coral 3":
+            return 4
+        case "Coral 2":
+            return 3
+        case "Coral 1":
+            return 2
+        case "Algae net":
+            return 4
+        case "Algae proc":
+            return 6 - (4 * HP_ACCURACY)
+        case "Climbed low":
+            return 12
+        case "Climbed high":
+            return 6
+        case _:
+            return 0
 
-time_left = 135
-r1_buf = [(136, "Connecting to FMS...")]
-r2_buf = [(136, "Connecting to FMS...")]
-r3_buf = [(136, "Connecting to FMS...")]
-while time_left > 0:
-    time_left -= 1
-    r1_buf.append((time_left, r1.teleop(time_left)))
-    r2_buf.append((time_left, r2.teleop(time_left)))
-    r3_buf.append((time_left, r3.teleop(time_left)))
-    print("Time remaining: ", time_left)
-print(r1_buf)
-# If there is high coral to be scored, score it
-# if Capabilities.CORAL_4 in self.abilties and (time_left+self.time_debt) > timemap[Capabilities.CORAL_4]:
+
+if __name__ == "__main__":
+    r1 = Robot(r1_abilties)
+    r2 = Robot(r2_abilties)
+    r3 = Robot(r3_abilties)
+
+    time_left = 135
+    r1_buf = [(136, "Connecting to FMS...")]
+    r2_buf = [(136, "Connecting to FMS...")]
+    r3_buf = [(136, "Connecting to FMS...")]
+    while time_left > 0:
+        time_left -= 1
+        r1_buf.append((time_left, r1.teleop(time_left)))
+        r2_buf.append((time_left, r2.teleop(time_left)))
+        r3_buf.append((time_left, r3.teleop(time_left)))
+        print("Time remaining: ", time_left)
+
+    print("Robot 1 scored ", sum(list(map(str_to_pts, r1_buf))), " points")
+    print("Robot 2 scored ", sum(list(map(str_to_pts, r2_buf))), " points")
+    print("Robot 3 scored ", sum(list(map(str_to_pts, r3_buf))), " points")
